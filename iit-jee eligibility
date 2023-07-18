@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract IITJEEEligibility {
+    
+    function checkAgeEligibility(uint256 age) public pure returns (bool) {
+        require(age >= 17 && age <= 25, "Age must be between 17 and 25"); // Check age eligibility
+        
+        return true; // If the condition is met, return true
+    }
+    
+    function assertMarksEligibility(uint256 marksPercentage) public pure {
+        assert(marksPercentage >= 75); // Assert marks eligibility
+    }
+    
+    function checkEligibility(uint256 age, uint256 marksPercentage) public pure {
+        require(checkAgeEligibility(age), "Age eligibility not met"); // Check age eligibility using require()
+        
+        assertMarksEligibility(marksPercentage); // Check marks eligibility using assert()
+        
+        revert("Student is not eligible for IIT JEE"); // Revert if any eligibility criteria are not met
+    }
+}
